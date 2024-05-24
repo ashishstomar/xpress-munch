@@ -11,17 +11,24 @@ import React from "react";
 const Header = () => {
   return (
     <div className="header">
-      <div className="logo">
-        <img src="src\assets\icon.svg" />
+      <div className="logo-wrap">
+        <img className="logo" src="src\assets\icon.svg" />
+        <h1>XPRESSMUNCH</h1>
       </div>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Munchies</li>
+          <li>Orders</li>
+          <li>Cart</li>
+        </ul>
+      </nav>
     </div>
   )
 }
 
 const App = () => (
-  <h1 className="header">
-    This is a Test
-    </h1>
+  <Header />
 )
 
 export default App;
