@@ -3,3 +3,35 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+.logo {
+  height: 70px;
+  padding: 20px;
+}
+
+.header {
+  background-color: rgb(250, 226, 226);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+}
+.header > nav > ul {
+  display: flex;
+  gap: 18px;
+  list-style-type: none;
+  padding-right: 50px;
+}
+.header > nav > ul > li {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+
