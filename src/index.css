@@ -33,5 +33,41 @@
   font-size: 20px;
 }
 
+.cardWrap {
+  padding: 8px;
+  height: 380px;
+  width: 250px;
+  background-color: rgb(247, 247, 247);
+  border-radius: 8px;
+}
+
+.cardWrap > * {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.cardImg {
+  height: 200px;
+  width: 250px;
+}
+
+.cardWrap:hover {
+  border: 2px solid rgb(152, 151, 151);
+  cursor: pointer;
+}
+
+.cardsSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardInfo-Bottom > * {
+  margin: 5px;
+}
 
 

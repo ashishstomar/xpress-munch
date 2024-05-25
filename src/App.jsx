@@ -27,8 +27,40 @@ const Header = () => {
   )
 }
 
-const App = () => (
-  <Header />
-)
+const ResCard = () => {
+  return (
+    <article className="cardWrap" >
+      <img className="cardImg" src="https://images.pexels.com/photos/9609853/pexels-photo-9609853.jpeg?auto=compress&cs=tinysrgb&w=800"></img>
+      <h3>Biryani Corner</h3>
+      <p>Hot and frshly cooked Biryani.</p>
+      <p>Station, Bengaluru</p> 
+      <div className="cardInfo">
+        <h3 className="price" >₹320</h3>
+          <div className="cardInfo-Bottom">
+            <h4>4.4 Rating</h4>
+            <h5>32 min</h5>
+          </div>
+      </div>
+    </article>
+  )
+}
+
+
+const Main = () => {
+  return (
+    <div className="cardsSection" >
+      <ResCard />
+    </div>
+  )
+}
+  
+const App = () => {
+  return (
+    <div>
+        <Header />
+        <Main />
+    </div>
+ )
+}
 
 export default App;
