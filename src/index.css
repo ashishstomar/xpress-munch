@@ -1,8 +1,8 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
 }
+
 
 body {
   margin: 0px;
@@ -41,18 +41,18 @@ body {
 }
 
 .cardWrap {
-  padding: 8px;
-  height: 400px;
-  width: 240px;
+  height: 420px;
+  max-width: 250px;
   background-color: rgb(253, 255, 240);
   border-radius: 15px;
   border: 2px solid rgb(253, 255, 240);
   transition-duration: 400ms;
+  padding: 5px;
+
 }
 
 .cardWrap > * {
   margin: 0px;
-  box-sizing: border-box;
 }
 
 .cardImg {
@@ -68,10 +68,12 @@ body {
 }
 
 .cardsSection {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  margin: 30px;
+  padding: 30px;
+  justify-content: center;
+
 }
 .cardInfo {
   display: flex;
