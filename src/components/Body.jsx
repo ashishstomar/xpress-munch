@@ -15,11 +15,13 @@ const Body = () => {
     );
     const json = await data.json();
 
-    
+    //OPTIONAL CHAINING
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
-  return (
+  return resList.length == 0 ? (
+    <Shimmer />
+  ) : (
       <div>
         <button
           className="filterBtn"  

@@ -72,7 +72,7 @@ body {
   cursor: pointer;
 }
 
-.cardsSection {
+.cardsSection, .shimmer-wrap {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
@@ -89,4 +89,16 @@ body {
   margin: 5px;
 }
 
+.shimmer-card {
+  height: 420px;
+  max-width: 250px;
+  background-color: #e0dedef0;
+  border-radius: 15px;
+  padding: 5px;
+}
 
+.Navbar {
+  display: flex;
+  align-items:center;
+
+}
