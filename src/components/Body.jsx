@@ -4,6 +4,9 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [resList, setResList ] = useState([]);
+  
+  const [searchtxt, setSearchtxt] = useState("");
+  console.log("Body-Rendered")
 
   useEffect(() => {
     fetchData();
@@ -15,7 +18,6 @@ const Body = () => {
     );
     const json = await data.json();
 
-    //OPTIONAL CHAINING
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
@@ -23,6 +25,23 @@ const Body = () => {
     <Shimmer />
   ) : (
       <div>
+        <input type="text" 
+          className="searchbar" 
+          placeholder="Pizza..." 
+          value={searchtxt}
+          onChange={(e) => {
+            setSearchtxt(e.target.value)
+          }}
+        >
+        </input>
+        <button className="search-btn"
+          onClick={()=> {
+            setResList(
+              resList.filter((res) => res.info.name.toUpperCase().includes(searchtxt.toUpperCase()))
+          )}}
+        >
+          Search
+        </button>
         <button
           className="filterBtn"  
           onClick={() => {
