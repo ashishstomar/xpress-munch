@@ -4,9 +4,8 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [resList, setResList ] = useState([]);
-  
   const [searchtxt, setSearchtxt] = useState("");
-  console.log("Body-Rendered")
+  const [filterResList, setFilterResList] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -19,39 +18,42 @@ const Body = () => {
     const json = await data.json();
 
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilterResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
   return resList.length == 0 ? (
     <Shimmer />
   ) : (
       <div>
-        <input type="text" 
+        <input 
+          type="text" 
           className="searchbar" 
           placeholder="Pizza..." 
           value={searchtxt}
           onChange={(e) => {
             setSearchtxt(e.target.value)
           }}
-        >
-        </input>
-        <button className="search-btn"
+        />
+        <button 
+          className="search-btn"
           onClick={()=> {
-            setResList(
+            setFilterResList(
               resList.filter((res) => res.info.name.toUpperCase().includes(searchtxt.toUpperCase()))
-          )}}
+            )
+          }}
         >
           Search
         </button>
         <button
           className="filterBtn"  
           onClick={() => {
-            setResList(resList.filter((res) => res.info.avgRating > 4 ))
+            setFilterResList(resList.filter((res) => res.info.avgRating > 4 ))
           }}
         >
           TOP RATED
         </button>
         <div className="cardsSection">
-          {resList.map((res) => <ResCard key={res.info.id} resData={res} />
+          {filterResList.map((res) => <ResCard key={res.info.id} resData={res} />
         )}
         </div>
       </div>
