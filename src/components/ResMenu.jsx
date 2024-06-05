@@ -1,47 +1,56 @@
 import { useState, useEffect } from 'react'
 import Shimmer from './Shimmer';
-import { CDN_URL } from "../common/constants";
+import { CDN_URL, MENU_API } from "../common/constants";
+import { useParams } from 'react-router-dom';
 
 const ResMenu = () => {
     const [resInfo, setResInfo] = useState(null);
+    const {resId} = useParams();
+
     useEffect(() =>{
         fetchResMenu();
     }, []);
-    const fetchResMenu = async () =>{
-        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=754966");
-        
-        const json = await data.json();
-        console.log(json);
-    } 
+    
+    const fetchResMenu = async () => {
+        const data = await fetch(MENU_API + resId);
+        const json = await data.json()
+        console.log(json)
+        setResInfo(json.data);
+    };
+
     if(resInfo === null) {
-        < Shimmer />
+        return(
+            < Shimmer />
+        )
     }
 
+    const { name, cuisines, costForTwoMessage, isOpen, avgRating, cloudinaryImageId } = resInfo.cards[2].card.card.info;
+    const {itemCards} = resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
     return(
         <div>
             <section className="banner">
-                <img src={CDN_URL +resData.info.cloudinaryImageId} />
+                <div>
+                    <img className="banner-img" src={CDN_URL +cloudinaryImageId} />
+                </div>
+                <div className="banner-info">
+                    <h1 className="res-title">{name}</h1>
+                    <p>{cuisines.join(',')}</p>
+                    <h4>{costForTwoMessage} 🍽️</h4>
+                    <h6>Currently {isOpen? "Open": "Closed"}</h6>
+                    <h3>{avgRating} ⭐</h3>
+                </div>
             </section>
-            <h1 className="res-title">Restaurant Name</h1>
             <article className="menu-wrap">
                 <h2>Menu</h2>
                 <ul className="menu-list">
-                    <li>data.cards[2].card.card.info.</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
-                    <li>sabji</li>
+                    {itemCards.map((item) => (
+                        <li key = {item.card.info.id}>
+                             {item.card.info.name} : ₹{item.card.info.price/100}
+                        </li>
+                    ))}
                 </ul>
             </article>
         </div>
-
     )
 };
 
