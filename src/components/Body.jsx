@@ -1,6 +1,7 @@
 import ResCard from "./ResCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [resList, setResList ] = useState([]);
@@ -53,7 +54,7 @@ const Body = () => {
           TOP RATED
         </button>
         <div className="cardsSection">
-          {filterResList.map((res) => <ResCard key={res.info.id} resData={res} />
+          {filterResList.map((res) => <Link to={"/res/" + res.info.id} key={res.info.id}><ResCard resData={res} /></Link>
         )}
         </div>
       </div>
