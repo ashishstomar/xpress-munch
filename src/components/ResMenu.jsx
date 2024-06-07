@@ -14,8 +14,8 @@ const ResMenu = () => {
     const fetchResMenu = async () => {
         const data = await fetch(MENU_API + resId);
         const json = await data.json()
-        console.log(json)
         setResInfo(json.data);
+        console.log(json.data);
     };
 
     if(resInfo === null) {
@@ -25,7 +25,10 @@ const ResMenu = () => {
     }
 
     const { name, cuisines, costForTwoMessage, isOpen, avgRating, cloudinaryImageId } = resInfo.cards[2].card.card.info;
-    const {itemCards} = resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
+    const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card 
+        ?? resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]
+    // const {itemCards} = resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.categories
+    
     return(
         <div>
             <section className="banner">
