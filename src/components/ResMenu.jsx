@@ -1,22 +1,12 @@
-import { useState, useEffect } from 'react'
 import Shimmer from './Shimmer';
-import { CDN_URL, MENU_API } from "../common/constants";
+import { CDN_URL } from "../common/constants";
 import { useParams } from 'react-router-dom';
+import useResMenu from '../common/useResMenu';
 
 const ResMenu = () => {
-    const [resInfo, setResInfo] = useState(null);
     const {resId} = useParams();
 
-    useEffect(() =>{
-        fetchResMenu();
-    }, []);
-    
-    const fetchResMenu = async () => {
-        const data = await fetch(MENU_API + resId);
-        const json = await data.json()
-        setResInfo(json.data);
-        console.log(json.data);
-    };
+    const resInfo = useResMenu(resId);
 
     if(resInfo === null) {
         return(
@@ -27,8 +17,6 @@ const ResMenu = () => {
     const { name, cuisines, costForTwoMessage, isOpen, avgRating, cloudinaryImageId } = resInfo.cards[2].card.card.info;
     const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card 
         ?? resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]
-    // const {itemCards} = resInfo.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.categories
-    
     return(
         <div>
             <section className="banner">
