@@ -2,6 +2,7 @@ import ResCard from "./ResCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useIsOnline from "../common/useIsOnline";
 
 const Body = () => {
   const [resList, setResList ] = useState([]);
@@ -20,6 +21,13 @@ const Body = () => {
 
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilterResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  };
+
+  const isOnline = useIsOnline();
+  if(isOnline == false) {
+    return(
+      <h1>OOPS! Looks Like Your Internet Connection Is Down.</h1>
+    )
   };
 
   return resList.length == 0 ? (
