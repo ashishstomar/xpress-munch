@@ -18,6 +18,7 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    console.log(json)
 
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilterResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -33,10 +34,10 @@ const Body = () => {
   return resList.length == 0 ? (
     <Shimmer />
   ) : (
-      <div>
+      <div className="p-10">
         <input 
           type="text" 
-          className="searchbar" 
+          className="px-3 py-1 rounded-md" 
           placeholder="Pizza..." 
           value={searchtxt}
           onChange={(e) => {
@@ -44,7 +45,7 @@ const Body = () => {
           }}
         />
         <button 
-          className="search-btn"
+          className="bg-cyan-400 rounded-md ml-2 px-3 py-1 font-medium"
           onClick={()=> {
             setFilterResList(
               resList.filter((res) => res.info.name.toUpperCase().includes(searchtxt.toUpperCase()))
@@ -54,14 +55,14 @@ const Body = () => {
           Search
         </button>
         <button
-          className="filterBtn"  
+          className="bg-blue-200 rounded-md font-semibold ml-5 px-3 py-1"  
           onClick={() => {
             setFilterResList(resList.filter((res) => res.info.avgRating > 4 ))
           }}
         >
           TOP RATED
         </button>
-        <div className="cardsSection">
+        <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-5">
           {filterResList.map((res) => <Link to={"/res/" + res.info.id} key={res.info.id}><ResCard resData={res} /></Link>
         )}
         </div>

@@ -19,24 +19,24 @@ const ResMenu = () => {
         ?? resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]
     return(
         <div>
-            <section className="banner">
+            <section className="flex h-98 bg-slate-300 m-10 rounded-2xl">
                 <div>
-                    <img className="banner-img" src={CDN_URL +cloudinaryImageId} />
+                    <img className="h-96 rounded-2xl" src={CDN_URL +cloudinaryImageId} />
                 </div>
-                <div className="banner-info">
-                    <h1 className="res-title">{name}</h1>
+                <div className="text-3xl pt-5 ml-5">
+                    <h1 className="font-bold">{name}</h1>
                     <p>{cuisines.join(',')}</p>
-                    <h4>{costForTwoMessage} 🍽️</h4>
-                    <h6>Currently {isOpen? "Open": "Closed"}</h6>
-                    <h3>{avgRating} ⭐</h3>
+                    <h4 className='text-2xl mt-5'>{costForTwoMessage} 🍽️</h4>
+                    <h6 className='text-2xl'>Currently {isOpen? "Open": "Closed"}</h6>
+                    <h3 className='text-2xl font-semibold'>{avgRating} ⭐</h3>
                 </div>
             </section>
-            <article className="menu-wrap">
-                <h2>Menu</h2>
-                <ul className="menu-list">
+            <article className="ml-10 text-xl">
+                <h2 className='font-bold text-3xl mb-3'>Menu</h2>
+                <ul>
                     {itemCards.map((item) => (
                         <li key = {item.card.info.id}>
-                             {item.card.info.name} : ₹{item.card.info.price/100 || item.card.info.defaultPrice/100}
+                             {item.card.info.name} : <span className='font-semibold'>₹{item.card.info.price/100 || item.card.info.defaultPrice/100}</span>
                         </li>
                     ))}
                 </ul>
