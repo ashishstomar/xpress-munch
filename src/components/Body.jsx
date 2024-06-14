@@ -1,4 +1,4 @@
-import ResCard from "./ResCard";
+import ResCard, {ResOfferHeader} from "./ResCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ const Body = () => {
   const [searchtxt, setSearchtxt] = useState("");
   const [filterResList, setFilterResList] = useState([]);
 
+  const ResCardOffer = ResOfferHeader(ResCard)
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,11 +20,12 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json)
 
     setResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilterResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
+
+  console.log(resList)
 
   const isOnline = useIsOnline();
   if(isOnline == false) {
@@ -63,8 +66,16 @@ const Body = () => {
           TOP RATED
         </button>
         <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-5">
-          {filterResList.map((res) => <Link to={"/res/" + res.info.id} key={res.info.id}><ResCard resData={res} /></Link>
-        )}
+          {filterResList.map((res) => (
+            <Link 
+              to={"/res/" + res.info.id} 
+              key={res.info.id}
+            >
+              {
+                res.info.aggregatedDiscountInfoV3 ? <ResCardOffer resData={res}/> : <ResCard resData={res} />
+              }
+            </Link>
+        ))}
         </div>
       </div>
     )
