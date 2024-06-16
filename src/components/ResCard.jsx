@@ -34,10 +34,10 @@ const ResCard = (props) => {
     return (props) => {
       const {resData} = props 
       const {header, subHeader} = resData.info.aggregatedDiscountInfoV3;
-      console.log(resData)
+      
       return (
          <div>
-          <label className="absolute text-sm bg-black bg-opacity-80 text-white font-semibold rounded-lg px-5 py-1">
+          <label className="absolute text-sm my-2 bg-black bg-opacity-80 text-white font-semibold rounded-lg px-5 py-1">
             {header} {subHeader}
           </label>
           <ResCard {...props}/>
