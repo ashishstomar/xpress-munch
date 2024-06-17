@@ -3,11 +3,12 @@ import { CDN_URL } from "../common/constants";
 import { useParams } from 'react-router-dom';
 import useResMenu from '../common/useResMenu';
 import ResMenuCategory from "./ResMenuCategory"
+import { useState } from 'react';
 
 const ResMenu = () => {
     const {resId} = useParams();
-
     const resInfo = useResMenu(resId);
+    const [showItemsIndex, setShowItemsIndex] = useState(null)
 
     if(resInfo === null) {
         return(
@@ -27,7 +28,7 @@ const ResMenu = () => {
                 <div>
                     <img className="h-64 rounded-2xl object-cover" src={CDN_URL +cloudinaryImageId} />
                 </div>
-                <div className="text-3xl pt-5 ml-5">
+                <div className="text-3xl pt-5 ml-14">
                     <h1 className="font-bold">{name}</h1>
                     <p>{cuisines.join(',')}</p>
                     <h4 className='text-2xl mt-5'>{costForTwoMessage} 🍽️</h4>
@@ -36,7 +37,14 @@ const ResMenu = () => {
                 </div>
             </section>
             <main className="text-xl text-center mb-80">
-                {menuCategory.map((cat, index) => <ResMenuCategory key={index} data={cat?.card?.card}  />)}
+                {menuCategory.map((cat, index) => (
+                    <ResMenuCategory 
+                        key={cat?.card?.card?.title} 
+                        data={cat?.card?.card}  
+                        showItems={index === showItemsIndex && true}
+                        setShowItemsIndex = {() => setShowItemsIndex(index)}
+                    />
+                ))}
             </main>
         </div>
     )
