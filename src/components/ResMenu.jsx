@@ -38,11 +38,14 @@ const ResMenu = () => {
             </section>
             <main className="text-xl text-center mb-80">
                 {menuCategory.map((cat, index) => (
+                    // controlled component
                     <ResMenuCategory 
                         key={cat?.card?.card?.title} 
                         data={cat?.card?.card}  
                         showItems={index === showItemsIndex && true}
-                        setShowItemsIndex = {() => setShowItemsIndex(index)}
+                        setShowItemsIndex = {() => {
+                            setShowItemsIndex(prevIndex => (prevIndex === index ? -1 : index))
+                        }}
                     />
                 ))}
             </main>
