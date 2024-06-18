@@ -1,9 +1,12 @@
 import { LOGO_PATH } from "../common/constants";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import userContext from "../common/userContext";
 
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login")
+
+  const {signedInUser} = useContext(userContext);
 
     return (
       <div className="flex justify-between items-center bg-[rgb(250,226,226)]">
@@ -12,7 +15,7 @@ const Header = () => {
           <Link to="/"><h1>XPRESSMUNCH</h1></Link>
         </div>
         <nav className="flex space-x-5 font-bold text-xl justify-center items-center mr-10">
-          <ul className="flex space-x-5">
+          <ul className="flex space-x-5 ">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -24,12 +27,13 @@ const Header = () => {
             </li>
             <li>Cart</li>
           </ul>
-          <button 
-            className="bg-red-300 px-8 py-2 rounded-3xl"
-            onClick={() => loginBtn === "Login" ? setLoginBtn("Logout") :  setLoginBtn("Login")}
-          >
-            {loginBtn}
-          </button>
+            <button 
+             className="bg-red-300 px-8 py-2 rounded-3xl"
+              onClick={() => loginBtn === "Login" ? setLoginBtn("Logout") :  setLoginBtn("Login")}
+            >
+              {loginBtn}
+            </button> 
+            <p>{signedInUser}</p>
         </nav>
       </div>
     )
