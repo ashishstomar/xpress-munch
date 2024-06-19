@@ -1,7 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { createBrowserRouter, Outlet } from "react-router-dom"
+import { useState } from 'react'
+import userContext from "./common/userContext";
 
 const Contact = lazy(() => import("./components/Contact"))
 const ResMenu = lazy(() => import("./components/ResMenu"))
@@ -10,10 +12,22 @@ const Error = lazy(() => import("./components/Error"))
 
 
 const App = () => {
+  const [userName, setUserName] = useState('default user');
+
+  //in case of auth
+  useEffect(() => { 
+    //Mock data in place of API call
+    const data = {
+      name: 'John'
+    }
+    setUserName(data.name)
+  }, [])
   return (
     <div>
+      <userContext.Provider value={{signedInUser: userName}}>
         <Header />
         <Outlet />
+      </userContext.Provider>  
     </div>
  )
 }
