@@ -4,6 +4,8 @@ import Body from "./components/Body";
 import { createBrowserRouter, Outlet } from "react-router-dom"
 import { useState } from 'react'
 import userContext from "./common/userContext";
+import { Provider } from "react-redux"
+import store from "./common/store";
 
 const Contact = lazy(() => import("./components/Contact"))
 const ResMenu = lazy(() => import("./components/ResMenu"))
@@ -23,12 +25,14 @@ const App = () => {
     setUserName(data.name)
   }, [])
   return (
-    <div>
+    <Provider store={store}>
       <userContext.Provider value={{signedInUser: userName}}>
-        <Header />
-        <Outlet />
-      </userContext.Provider>  
-    </div>
+        <div>
+          <Header />
+          <Outlet />
+        </div>
+      </userContext.Provider>
+    </Provider>  
  )
 }
 
