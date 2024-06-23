@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import Cart from "./components/Cart";
 import { createBrowserRouter, Outlet } from "react-router-dom"
 import { useState } from 'react'
 import userContext from "./common/userContext";
@@ -58,6 +59,13 @@ export const appRouter = createBrowserRouter([
         <Suspense fallback={<h1>Loading...</h1>}>
           <Contact />
         </Suspense>,
+      },
+      {
+        path: "/cart",
+        element:
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Cart />
+        </Suspense>
       },
       {
         path: "/res/:resId",

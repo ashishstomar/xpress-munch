@@ -13,7 +13,7 @@ const Header = () => {
   const cartBanner = useSelector((store) => store.cart.items);
 
     return (
-      <div className="p-3 shadow-lg flex text-white justify-between items-center bg-[rgba(244,67,34,255)]">
+      <div className="p-3 shadow-lg flex flex-wrap text-white justify-between items-center bg-[rgba(244,67,34,255)]">
         <div className="flex justify-between items-center italic text-2xl font-bold">
           <img className="h-24 p-3 rounded-s-full" src={LOGO_PATH}/>
           <Link to="/"><h1>XPRESSMUNCH</h1></Link>
@@ -31,7 +31,7 @@ const Header = () => {
             </li>
           </ul>
           <div className="relative">
-          <img className="h-10" src={CART_LOGO_PATH}/>
+          <Link to="/cart"><img className="h-10" src={CART_LOGO_PATH}/></Link>
           <p className="absolute text-xs text-black rounded-full p-1  bg-white top-6">{cartBanner.length}</p>
           </div>
           <p>{signedInUser}</p>
