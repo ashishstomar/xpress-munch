@@ -1,3 +1,4 @@
+
 import { CDN_URL } from "../common/constants";
 
 const ResCard = (props) => {
@@ -5,19 +6,22 @@ const ResCard = (props) => {
     const {avgRatingString, costForTwo, areaName, cuisines, name, cloudinaryImageId} = resData.info;
     const {deliveryTime} = resData.info.sla;
     return (
-      <article className="bg-[rgb(253,255,240)] p-2 rounded-2xl h-[420px] mt-10">
+      <article className="bg-[rgb(255,255,255)] p-2 rounded-2xl h-[420px] mt-10">
         <img 
           className="rounded-2xl object-cover h-60 w-full" 
           src= { CDN_URL + cloudinaryImageId}
         />
-        <div className="px-5 py-3">
+        <div className="px-2 py-2">
           <h3 className="font-bold">{name}</h3>
-          <h6>{cuisines.slice(0, 4).join(', ')}</h6>
-          <p>{areaName}</p> 
-          <div className="flex justify-between font-medium">
-            <h4 className="font-medium" >{costForTwo}</h4>
+          <h6>{cuisines.slice(0, 2).join(', ')}</h6>
+          
+          <div className="mt-2 flex justify-between font-semibold text-sm">
+            <div>
+              <p>{areaName}</p> 
+              <h4 className="font-medium text-green-700" >{costForTwo}</h4>
+            </div>
               <div className="cardInfo-Bottom">
-                <h5 className="font-medium">⭐ {avgRatingString} Rating</h5>
+                <h5 className="font-medium">⭐ {avgRatingString}</h5>
                 <h5>🕒 {deliveryTime} Min</h5>
               </div>
           </div>

@@ -17,7 +17,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999"
     );
     const json = await data.json();
 
@@ -25,12 +25,10 @@ const Body = () => {
     setFilterResList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
-  console.log(resList)
-
   const isOnline = useIsOnline();
   if(isOnline == false) {
     return(
-      <h1>OOPS! Looks Like Your Internet Connection Is Down.</h1>
+      <h1 className="text-lg font-semibold">OOPS! Looks Like Your Internet Connection Is Down.</h1>
     )
   };
 
@@ -40,7 +38,7 @@ const Body = () => {
       <div className="p-10">
         <input 
           type="text" 
-          className="px-3 py-1 rounded-md" 
+          className="px-3 font-medium py-1 rounded-md bg-slate-300" 
           placeholder="Pizza..." 
           value={searchtxt}
           onChange={(e) => {
@@ -65,7 +63,8 @@ const Body = () => {
         >
           TOP RATED
         </button>
-        <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-5">
+
+        <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 gap-5">
           {filterResList.map((res) => (
             <Link 
               to={"/res/" + res.info.id} 

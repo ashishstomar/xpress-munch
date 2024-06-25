@@ -24,9 +24,9 @@ const ResMenu = () => {
 
     return(
         <div>
-            <section className="flex h-98 bg-slate-300 mt-16 rounded-2xl w-8/12 mx-auto">
+            <section className="flex h-98 bg-slate-100 mt-16 rounded-3xl w-8/12 mx-auto">
                 <div>
-                    <img className="h-64 rounded-2xl object-cover" src={CDN_URL +cloudinaryImageId} />
+                    <img className="h-64 rounded-s-3xl object-cover" src={CDN_URL +cloudinaryImageId} />
                 </div>
                 <div className="text-3xl pt-5 ml-14">
                     <h1 className="font-bold">{name}</h1>
