@@ -27,7 +27,7 @@ const cartSlice = createSlice({
             if(item) {
                 item.quantity -= 1;
                 if (item.quantity < 1) {
-                    state.items = state.items.filter(item => item.id !== action.payload.card.info.id)
+                    state.items = state.items.filter(item => item.card.info.id !== action.payload.card.info.id)
                 }    
             } 
         },
