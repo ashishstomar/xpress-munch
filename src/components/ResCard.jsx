@@ -6,9 +6,9 @@ const ResCard = (props) => {
     const {avgRatingString, costForTwo, areaName, cuisines, name, cloudinaryImageId} = resData.info;
     const {deliveryTime} = resData.info.sla;
     return (
-      <article className="bg-[rgb(255,255,255)] p-2 rounded-2xl h-[420px] mt-10">
+      <article className="bg-[rgb(255,255,255)] p-2 rounded-2xl h-[400px]">
         <img 
-          className="rounded-2xl object-cover h-60 w-full" 
+          className="rounded-2xl object-cover h-60 w-full shadow-2xl" 
           src= { CDN_URL + cloudinaryImageId}
         />
         <div className="px-2 py-2">

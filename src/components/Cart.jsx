@@ -67,7 +67,7 @@ const Cart = () => {
                                     +
                                 </button>
                             </div>
-                            <span className=" font-bold text-green-700 text-left"> ₹{item.quantity * item.card.info.price/100 || item.card.info.defaultPrice/100}</span>
+                            <span className=" font-bold text-green-700 text-left"> ₹{item.quantity * (item.card.info.price/100 || item.card.info.defaultPrice/100)}</span>
                         </div>
                     </div>
                 ))} 
