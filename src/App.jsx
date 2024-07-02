@@ -7,6 +7,7 @@ import { useState } from 'react'
 import userContext from "./common/userContext";
 import { Provider } from "react-redux"
 import store from "./common/store";
+import Footer from "./components/Footer";
 
 const Contact = lazy(() => import("./components/Contact"))
 const ResMenu = lazy(() => import("./components/ResMenu"))
@@ -31,6 +32,7 @@ const App = () => {
         <div>
           <Header />
           <Outlet />
+          <Footer />
         </div>
       </userContext.Provider>
     </Provider>  
